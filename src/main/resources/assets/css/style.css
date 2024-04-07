@@ -1,0 +1,10 @@
+.bluemapspawn-marker {
+    --icon-width: 24px;
+    --icon-height: 24px;
+}
+
+#map-container .bluemapspawn-marker img {
+    width: var(--icon-width);
+    height: var(--icon-height);
+    image-rendering: pixelated;
+}

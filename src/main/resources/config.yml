@@ -1,0 +1,12 @@
+general:
+  overwrite_assets: true
+
+marker_set:
+  key: "bluemapspawn"
+  label: "Spawn"
+  toggleable: true
+  default_hidden: false
+  marker:
+    max_distance: 1000
+    key: "bluemapspawn-spawn"
+    label: "Spawn"
