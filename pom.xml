@@ -10,6 +10,8 @@
   <packaging>jar</packaging>
 
   <name>BlueMapSpawn</name>
+  <description>BlueMap plugin that adds a spawn marker on the map</description>
+  <url>https://github.com/Renaud11232/BlueMapSpawn</url>
 
   <properties>
     <java.version>17</java.version>
