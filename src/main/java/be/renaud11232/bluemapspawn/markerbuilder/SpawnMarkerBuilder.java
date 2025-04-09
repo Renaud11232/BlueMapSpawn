@@ -1,26 +1,29 @@
 package be.renaud11232.bluemapspawn.markerbuilder;
 
-import com.flowpowered.math.vector.Vector2i;
+import be.renaud11232.bluemapspawn.BlueMapSpawnConfiguration;
+import be.renaud11232.bluemapspawn.BlueMapSpawnIcon;
+import be.renaud11232.bluemapspawn.BlueMapSpawnStyleClass;
 import de.bluecolored.bluemap.api.markers.POIMarker;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 
-public class SpawnMarkerBuilder {
-
+public class SpawnMarkerBuilder implements MarkerBuilder<Location> {
     private final FileConfiguration config;
+    private final FileConfiguration defaultConfig;
 
-    public SpawnMarkerBuilder(FileConfiguration config) {
+    public SpawnMarkerBuilder(FileConfiguration config, FileConfiguration defaultConfig) {
         this.config = config;
+        this.defaultConfig = defaultConfig;
     }
 
+    @Override
     public POIMarker build(Location location) {
         return POIMarker.builder()
-                .label(config.getString("marker_set.marker.label", "Spawn"))
-                .maxDistance(config.getDouble("marker_set.marker.max_distance", 1000))
+                .label(BlueMapSpawnConfiguration.MarkerSet.Marker.LABEL.get(config, defaultConfig))
+                .maxDistance(BlueMapSpawnConfiguration.MarkerSet.Marker.MAX_DISTANCE.get(config, defaultConfig))
                 .position(location.getX(), location.getY(), location.getZ())
-                .icon("assets/bluemapspawn/img/spawn.png", new Vector2i(12, 12))
-                .styleClasses("bluemapspawn-marker")
+                .icon(BlueMapSpawnIcon.SPAWN.getPath(), BlueMapSpawnIcon.SPAWN.getAnchor())
+                .styleClasses(BlueMapSpawnStyleClass.MARKER)
                 .build();
     }
-
 }
