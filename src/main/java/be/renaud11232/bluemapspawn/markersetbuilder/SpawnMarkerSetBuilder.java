@@ -1,26 +1,30 @@
 package be.renaud11232.bluemapspawn.markersetbuilder;
 
+import be.renaud11232.bluemapspawn.BlueMapSpawnConfiguration;
 import de.bluecolored.bluemap.api.markers.MarkerSet;
 import org.bukkit.configuration.file.FileConfiguration;
 
-public class SpawnMarkerSetBuilder {
-
+public class SpawnMarkerSetBuilder implements MarkerSetBuilder {
     private final FileConfiguration config;
+    private final FileConfiguration defaultConfig;
 
-    public SpawnMarkerSetBuilder(FileConfiguration config) {
+    public SpawnMarkerSetBuilder(FileConfiguration config, FileConfiguration defaultConfig) {
         this.config = config;
+        this.defaultConfig = defaultConfig;
     }
 
+    @Override
     public MarkerSet build() {
         return MarkerSet.builder()
-                .label(config.getString("marker_set.label", "Spawn"))
-                .toggleable(config.getBoolean("marker_set.toggleable", true))
-                .defaultHidden(config.getBoolean("marker_set.default_hidden", false))
+                .label(BlueMapSpawnConfiguration.MarkerSet.LABEL.get(config, defaultConfig))
+                .toggleable(BlueMapSpawnConfiguration.MarkerSet.TOGGLEABLE.get(config, defaultConfig))
+                .defaultHidden(BlueMapSpawnConfiguration.MarkerSet.DEFAULT_HIDDEN.get(config, defaultConfig))
                 .build();
     }
 
+    @Override
     public String getKey() {
-        return config.getString("marker_set.key", "bluemapspawn");
+        return BlueMapSpawnConfiguration.MarkerSet.KEY.get(config, defaultConfig);
     }
 
 
