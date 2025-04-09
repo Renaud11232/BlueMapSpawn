@@ -49,7 +49,7 @@ public final class BlueMapSpawn extends JavaPlugin {
     private void prepareFiles(BlueMapAPI api) {
         boolean overwrite = BlueMapSpawnConfiguration.General.OVERWRITE_ASSETS.get(getConfig(), defaultConfig);
         Path relativeDestination = Path.of("assets").resolve("bluemapspawn");
-        Path destination = api.getWebApp().getWebRoot().relativize(relativeDestination);
+        Path destination = api.getWebApp().getWebRoot().resolve(relativeDestination);
         try (AssetExtractor assetExtractor = new AssetExtractor("assets", destination)) {
             assetExtractor.extract(overwrite);
             assetExtractor.listDestinationFiles()
