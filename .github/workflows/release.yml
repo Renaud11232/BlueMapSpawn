@@ -27,9 +27,6 @@ jobs:
           java-version: 21
       - name: Build jar
         run: mvn package
-      - name: Rename built jar
-        working-directory: target
-        run: mv BlueMapSpawn-*.jar BlueMapSpawn-${{ needs.version.outputs.version }}.jar
       - uses: actions/upload-artifact@v4
         with:
           name: build
