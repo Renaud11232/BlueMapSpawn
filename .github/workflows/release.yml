@@ -1,0 +1,52 @@
+name: Build release
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  version:
+    name: Extract version from git tag
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get version from git tag
+        id: version
+        run: echo "version=$(echo $GITHUB_REF | sed 's/refs\/tags\///')" | tee -a $GITHUB_OUTPUT
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+  build:
+    name: Build plugin jar
+    runs-on: ubuntu-latest
+    needs: version
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - name: Build jar
+        run: mvn package
+      - name: Rename built jar
+        working-directory: target
+        run: mv BlueMapSpawn-*.jar BlueMapSpawn-${{ needs.version.outputs.version }}.jar
+      - uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: target/BlueMapSpawn-${{ needs.version.outputs.version }}.jar
+  upload_release:
+    name: Upload jar to release
+    runs-on: ubuntu-latest
+    needs:
+      - version
+      - build
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: build
+          path: .
+      - uses: svenstaro/upload-release-action@v2
+        with:
+          file: BlueMapSpawn-${{ needs.version.outputs.version }}.jar
