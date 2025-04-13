@@ -11,7 +11,7 @@ This plugin should be compatible with Spigot/Paper (and derivatives) starting wi
 ## Configuration
 
 The plugin provides a few configuration options to customize the marker, or the web assets.
-All configuration values are in the standard `plugin.yml`.
+All configuration values are in the standard `config.yml`.
 The plugin is reloaded normally when BlueMap is reloaded.
 
 ## Download
