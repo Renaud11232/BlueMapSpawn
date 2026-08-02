@@ -1,0 +1,10 @@
+name: BlueMapSpawn
+version: '${version}'
+main: be.renaud11232.bluemapspawn.bukkit.BukkitBlueMapSpawn
+api-version: '${apiVersion}'
+depend:
+  - BlueMap
+authors:
+  - Renaud11232
+description: '${description}'
+website: '${website}'
