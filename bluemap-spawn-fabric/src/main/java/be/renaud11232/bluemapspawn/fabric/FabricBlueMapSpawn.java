@@ -2,6 +2,7 @@ package be.renaud11232.bluemapspawn.fabric;
 
 import be.renaud11232.bluemapspawn.configuration.Configuration;
 import be.renaud11232.bluemapspawn.fabric.configuration.FabricConfiguration;
+import be.renaud11232.bluemapspawn.fabric.event.RespawnDataSetCallback;
 import be.renaud11232.bluemapspawn.fabric.mod.FabricModDefinition;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -10,6 +11,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.InteractionResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,6 +29,7 @@ public class FabricBlueMapSpawn implements ModInitializer {
     private final FabricModDefinition modDefinition;
     private final Logger logger;
     private Configuration configuration;
+    private FabricBlueMapSpawnModule module;
 
     public FabricBlueMapSpawn() {
         gson = new GsonBuilder().setPrettyPrinting().create();
@@ -44,16 +47,21 @@ public class FabricBlueMapSpawn implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        ServerLifecycleEvents.SERVER_STARTING.register(server -> SERVER = server);
         saveDefaultConfig();
-        //TODO: initialize event listener
+        ServerLifecycleEvents.SERVER_STARTING.register(server -> SERVER = server);
+        RespawnDataSetCallback.EVENT.register(level -> {
+            if (module != null) {
+                module.update(level);
+            }
+            return InteractionResult.SUCCESS;
+        });
         BlueMapAPI.onEnable(api -> {
             logger.info("Enabling {}", modDefinition.getName());
             reloadConfig();
-            var module = new FabricBlueMapSpawnModule(api, configuration);
-            //eventListener.setModule(module);
+            module = new FabricBlueMapSpawnModule(api, configuration);
             module.update();
         });
+        BlueMapAPI.onDisable(_ -> module = null);
     }
 
     private InputStream getJarResource(String name) {

@@ -13,6 +13,9 @@
   },
   "license": "MIT",
   "environment": "*",
+  "mixins": [
+    "bluemap-spawn.mixins.json"
+  ],
   "entrypoints": {
     "main": [
       "be.renaud11232.bluemapspawn.fabric.FabricBlueMapSpawn"
