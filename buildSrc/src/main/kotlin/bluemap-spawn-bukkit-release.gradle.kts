@@ -26,3 +26,9 @@ tasks {
         dependsOn(shadowJar)
     }
 }
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(Integer.parseInt(project.property("bukkit-java-version").toString()))
+    }
+}

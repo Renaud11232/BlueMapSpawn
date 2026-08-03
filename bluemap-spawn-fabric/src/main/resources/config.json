@@ -1,0 +1,13 @@
+{
+  "marker_set": {
+    "id": "bluemapspawn",
+    "label": "Spawn",
+    "toggleable": true,
+    "default_hidden": false,
+    "marker": {
+      "id": "bluemapspawn-spawn",
+      "label": "Spawn",
+      "max_distance": 1000
+    }
+  }
+}

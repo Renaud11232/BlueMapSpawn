@@ -10,6 +10,6 @@ repositories {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(Integer.parseInt(project.property("core-java-version").toString()))
     }
 }

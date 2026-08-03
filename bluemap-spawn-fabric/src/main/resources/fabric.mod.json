@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "bluemap-spawn",
+  "version": "${version}",
+  "name": "BlueMapSpawn",
+  "description": "${description}",
+  "authors": [
+    "Renaud11232"
+  ],
+  "contact": {
+    "homepage": "${website}",
+    "sources": "${website}"
+  },
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "be.renaud11232.bluemapspawn.fabric.FabricBlueMapSpawn"
+    ]
+  },
+  "depends": {
+    "java": ">=${javaVersion}",
+    "minecraft": ">=${apiVersion}",
+    "fabricloader": "*",
+    "bluemap": "*"
+  }
+}

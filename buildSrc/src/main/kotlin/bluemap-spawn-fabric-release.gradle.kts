@@ -1,5 +1,3 @@
-import gradle.kotlin.dsl.accessors._0cb39c16b209519d61ee18b0fceac003.java
-
 plugins {
     id("bluemap-spawn-java")
     id("net.fabricmc.fabric-loom")
@@ -20,7 +18,7 @@ tasks {
         val projectVersion = project.version.toString()
         val projectDescription = project.description.toString()
         val website = project.property("website").toString()
-        val javaVersion = project.property("java-version").toString()
+        val javaVersion = project.property("fabric-java-version").toString()
         val minecraftApiVersion = project.property("minecraft-api-version").toString()
         filesMatching("fabric.mod.json") {
             expand(
@@ -55,6 +53,6 @@ tasks {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(25)
+        languageVersion = JavaLanguageVersion.of(Integer.parseInt(project.property("fabric-java-version").toString()))
     }
 }

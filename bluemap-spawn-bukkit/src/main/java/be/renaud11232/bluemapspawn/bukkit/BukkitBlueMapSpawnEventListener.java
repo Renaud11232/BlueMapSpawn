@@ -5,14 +5,20 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.world.SpawnChangeEvent;
 
 public class BukkitBlueMapSpawnEventListener implements Listener {
-    private final BukkitBlueMapSpawnModule module;
+    private BukkitBlueMapSpawnModule module;
 
-    public BukkitBlueMapSpawnEventListener(BukkitBlueMapSpawnModule module) {
+    public BukkitBlueMapSpawnEventListener() {
+        this.module = null;
+    }
+
+    public void setModule(BukkitBlueMapSpawnModule module) {
         this.module = module;
     }
 
     @EventHandler
     public void onSpawnChange(SpawnChangeEvent spawnChangeEvent) {
-        module.update(spawnChangeEvent.getWorld());
+        if (module != null) {
+            module.update(spawnChangeEvent.getWorld());
+        }
     }
 }
