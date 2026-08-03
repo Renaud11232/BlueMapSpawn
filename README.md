@@ -6,12 +6,18 @@ Adds a marker with the spawn location of your worlds on your [BlueMap](https://g
 
 ## Compatibility
 
-This plugin should be compatible with Spigot/Paper (and derivatives) starting with version 1.13.
+Please refer to the following table to find the best version for your server :
+
+| BlueMapSpawn version | Bukkit (Paper, Spigot, etc.) version | Fabric version |
+|----------------------|--------------------------------------|----------------|
+| 1.0.0                | 1.20 and up                          | Not supported  |
+| 1.1.0                | 1.13 and up                          | Not supported  |
+| 2.0.0                | 1.13 and up                          | 26.1 - 26.2    |
 
 ## Configuration
 
-The plugin provides a few configuration options to customize the marker, or the web assets.
-All configuration values are in the standard `config.yml`.
+The plugin provides a few configuration options to customize the marker.
+All configuration values are in the standard `config.yml` (for Bukkit based servers) and `config.json` for Fabric servers.
 The plugin is reloaded normally when BlueMap is reloaded.
 
 ## Download
