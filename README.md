@@ -12,7 +12,7 @@ Please refer to the following table to find the best version for your server :
 |----------------------|--------------------------------------|----------------|
 | 1.0.0                | 1.20 and up                          | Not supported  |
 | 1.1.0                | 1.13 and up                          | Not supported  |
-| 2.0.0                | 1.13 and up                          | 26.1 - 26.2    |
+| 2.0.0                | 1.13 and up                          | 26.1 - 26.3    |
 
 ## Configuration
 
