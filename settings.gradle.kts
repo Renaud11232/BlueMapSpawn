@@ -1,5 +1,10 @@
 rootProject.name = "bluemap-spawn"
 
-include("bluemap-spawn-common")
-include("bluemap-spawn-bukkit")
-include("bluemap-spawn-fabric")
+subproject(":bluemap-spawn-common", "common")
+subproject(":bluemap-spawn-bukkit", "bukkit")
+subproject(":bluemap-spawn-fabric", "fabric")
+
+fun subproject(name: String, path: String) {
+    include(name)
+    project(name).projectDir = file(path)
+}
